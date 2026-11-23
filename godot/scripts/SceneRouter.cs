@@ -1,3 +1,4 @@
+using EdgeOfTheChart.Godot.WorldMap;
 using EdgeOfTheChart.SimulationCore.Routing;
 using Godot;
 
@@ -6,6 +7,7 @@ namespace EdgeOfTheChart.Godot;
 public partial class SceneRouter : Control
 {
     private const string TitleScenePath = "res://scenes/ui/TitleScreen.tscn";
+    private const string WorldMapScenePath = "res://scenes/world_map/WorldMapScene.tscn";
     private const string PlaceholderScenePath = "res://scenes/placeholders/ScenePlaceholder.tscn";
 
     private GameSession? _session;
@@ -36,7 +38,13 @@ public partial class SceneRouter : Control
             _activeScene = null;
         }
 
-        string targetPath = sceneId == GameSceneId.Title ? TitleScenePath : PlaceholderScenePath;
+        string targetPath = sceneId switch
+        {
+            GameSceneId.Title => TitleScenePath,
+            GameSceneId.WorldMap => WorldMapScenePath,
+            _ => PlaceholderScenePath
+        };
+
         PackedScene? packed = GD.Load<PackedScene>(targetPath);
         if (packed is null)
         {
@@ -51,6 +59,10 @@ public partial class SceneRouter : Control
         if (instance is TitleScreen titleScreen)
         {
             titleScreen.Bind(_session, this);
+        }
+        else if (instance is WorldMapController worldMap)
+        {
+            worldMap.Bind(_session, this);
         }
         else if (instance is ScenePlaceholder placeholder)
         {

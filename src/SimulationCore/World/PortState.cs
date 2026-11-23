@@ -10,6 +10,8 @@ public sealed class PortState
     public string Size { get; set; } = "major";
     public int WorldX { get; set; }
     public int WorldY { get; set; }
+    public int? Phase1X { get; set; }
+    public int? Phase1Y { get; set; }
     public string OwnerFactionId { get; set; } = string.Empty;
     public string? GovernorOfficerId { get; set; }
     public int CommerceDev { get; set; }
@@ -32,6 +34,8 @@ public sealed class PortState
             Size = data.Size,
             WorldX = data.WorldTile.X,
             WorldY = data.WorldTile.Y,
+            Phase1X = data.Phase1Tile?.X,
+            Phase1Y = data.Phase1Tile?.Y,
             OwnerFactionId = data.OwnerFaction,
             CommerceDev = data.CommerceDev,
             IndustryDev = data.IndustryDev,

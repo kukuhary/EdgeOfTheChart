@@ -1,0 +1,406 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/WorldMap/WorldMapController.cs" id="1_ctrl"]
+[ext_resource type="Theme" path="res://resources/retro_theme.tres" id="2_theme"]
+
+[node name="WorldMapScene" type="Node2D"]
+script = ExtResource("1_ctrl")
+
+[node name="OceanTileMap" type="TileMapLayer" parent="."]
+
+[node name="FogTileMap" type="TileMapLayer" parent="."]
+
+[node name="StormsRoot" type="Node2D" parent="."]
+
+[node name="PortLabelsRoot" type="Node2D" parent="."]
+
+[node name="PlayerShip" type="Sprite2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="PlayerShip"]
+offset = Vector2(110, 12)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="HudRoot" type="Control" parent="HudLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+
+[node name="TopBar" type="PanelContainer" parent="HudLayer/HudRoot"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="HudLayer/HudRoot/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LblDate" type="Label" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+text = "1522-05-01 08:00"
+
+[node name="BtnSpeed0" type="Button" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+text = "⏸"
+
+[node name="BtnSpeed1" type="Button" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+text = "[1×]"
+
+[node name="BtnSpeed2" type="Button" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+text = "2×"
+
+[node name="BtnSpeed4" type="Button" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+text = "4×"
+
+[node name="LblCoords" type="Label" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+text = "39.7°N 9.6°W"
+
+[node name="LblExplore" type="Label" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(82, 0)
+layout_mode = 2
+text = "탐험 0.0%"
+
+[node name="LblWind" type="Label" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "동향풍(→) F2 · 역풍"
+
+[node name="LblSpeed" type="Label" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(82, 0)
+layout_mode = 2
+text = "3.4 타일/일"
+
+[node name="BtnTitle" type="Button" parent="HudLayer/HudRoot/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+text = "타이틀"
+
+[node name="RightPanel" type="PanelContainer" parent="HudLayer/HudRoot"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = 42.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HudLayer/HudRoot/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblShipHeader" type="Label" parent="HudLayer/HudRoot/RightPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.835294, 0.568627, 1)
+theme_override_font_sizes/font_size = 13
+text = "에스페란사 (1/3척)"
+autowrap_mode = 3
+
+[node name="LblMorale" type="Label" parent="HudLayer/HudRoot/RightPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "사기 80 · 반란 0% · 5,000 G"
+autowrap_mode = 3
+
+[node name="LblAlerts" type="Label" parent="HudLayer/HudRoot/RightPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.545098, 0.454902, 1)
+theme_override_font_sizes/font_size = 12
+text = "상태 양호"
+autowrap_mode = 3
+
+[node name="HSep1" type="HSeparator" parent="HudLayer/HudRoot/RightPanel/VBox"]
+layout_mode = 2
+
+[node name="LblSupplies" type="Label" parent="HudLayer/HudRoot/RightPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "식량 200 · 식수 200 · 목재 30 · 라임 5"
+autowrap_mode = 3
+
+[node name="RationRow" type="HBoxContainer" parent="HudLayer/HudRoot/RightPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblRation" type="Label" parent="HudLayer/HudRoot/RightPanel/VBox/RationRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "배급:"
+
+[node name="BtnRation50" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/RationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "50%"
+
+[node name="BtnRation75" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/RationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "75%"
+
+[node name="BtnRation100" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/RationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[100%]"
+
+[node name="ActionGrid" type="GridContainer" parent="HudLayer/HudRoot/RightPanel/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="BtnReef" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/ActionGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "돛 접기 (R)"
+
+[node name="BtnForage" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/ActionGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "낚시/빗물"
+
+[node name="BtnRepair" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/ActionGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "응급수리"
+
+[node name="BtnLime" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox/ActionGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "라임 복용"
+
+[node name="BtnDockPort" type="Button" parent="HudLayer/HudRoot/RightPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "인접 항구 없음"
+
+[node name="MinimapLabel" type="Label" parent="HudLayer/HudRoot/RightPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.713726, 0.788235, 0.878431, 1)
+theme_override_font_sizes/font_size = 11
+text = "이베리아·서지중해 해도 (WASD/화살표 항해)"
+
+[node name="MinimapRect" type="TextureRect" parent="HudLayer/HudRoot/RightPanel/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 108)
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LogBar" type="PanelContainer" parent="HudLayer/HudRoot"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -78.0
+offset_right = -246.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LblVoyageLog" type="Label" parent="HudLayer/HudRoot/LogBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "항해 일지 준비 중..."
+autowrap_mode = 3
+
+[node name="PortDockModal" type="PanelContainer" parent="HudLayer/HudRoot"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -185.0
+offset_right = 240.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HudLayer/HudRoot/PortDockModal"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LblPortTitle" type="Label" parent="HudLayer/HudRoot/PortDockModal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.835294, 0.568627, 1)
+theme_override_font_sizes/font_size = 20
+text = "항구 부두"
+horizontal_alignment = 1
+
+[node name="LblPortInfo" type="Label" parent="HudLayer/HudRoot/PortDockModal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "항구 정보"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PortGrid" type="GridContainer" parent="HudLayer/HudRoot/PortDockModal/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="BtnBuyFood" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "식량 +50 (100 G)"
+
+[node name="BtnBuyWater" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "식수 +50 (50 G)"
+
+[node name="BtnBuyWood" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "목재 +10 (120 G)"
+
+[node name="BtnBuyLime" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "라임 +2 (70 G)"
+
+[node name="BtnPortRepair" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "선체 완전 수리"
+
+[node name="BtnPortRest" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "여관·주점 휴식 (100 G)"
+
+[node name="BtnPortRecruit" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "선원 +10 모집 (100 G)"
+
+[node name="BtnPortPayDebt" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/PortGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "채무 500 G 상환"
+
+[node name="LblPortStatus" type="Label" parent="HudLayer/HudRoot/PortDockModal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.564706, 0.878431, 0.690196, 1)
+theme_override_font_sizes/font_size = 12
+text = "부두 준비 완료"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BottomRow" type="HBoxContainer" parent="HudLayer/HudRoot/PortDockModal/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BtnPortSave" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "진행 저장"
+
+[node name="BtnDepart" type="Button" parent="HudLayer/HudRoot/PortDockModal/VBox/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "출항 (E / ESC)"
+
+[node name="RescueModal" type="PanelContainer" parent="HudLayer/HudRoot"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -135.0
+offset_right = 230.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HudLayer/HudRoot/RescueModal"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LblRescueTitle" type="Label" parent="HudLayer/HudRoot/RescueModal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.545098, 0.454902, 1)
+theme_override_font_sizes/font_size = 20
+text = "해상 조난 구조"
+horizontal_alignment = 1
+
+[node name="LblRescueDesc" type="Label" parent="HudLayer/HudRoot/RescueModal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "구조 안내"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BtnRescueConfirm" type="Button" parent="HudLayer/HudRoot/RescueModal/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "재출항 준비"

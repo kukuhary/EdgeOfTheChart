@@ -11,6 +11,7 @@ public sealed class SimulationClock
     public int SpeedMultiplier { get; set; } = 1;
 
     public string FormattedDate => $"{Year:0000}-{Month:00}-{Day:00} {Hour:00}:00";
+    public int DayStamp => (new DateTime(Year, Month, Day) - new DateTime(1522, 1, 1)).Days;
 
     public void SetSpeed(int speedMultiplier)
     {

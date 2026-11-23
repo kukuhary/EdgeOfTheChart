@@ -15,6 +15,13 @@ public sealed class Fleet
     public int RationPercent { get; set; } = 100;
     public int Morale { get; set; } = 80;
     public int CurseGauge { get; set; } = 0;
+    public int LimeJuice { get; set; } = 5;
+    public bool SailsReefed { get; set; } = false;
+    public bool HasScurvy { get; set; } = false;
+    public int DaysAtSea { get; set; } = 0;
+    public int ConsecutiveLowRationDays { get; set; } = 0;
+    public int MutinyRisk { get; set; } = 0;
+    public int LastForageDayStamp { get; set; } = -10;
 
     public Ship? Flagship => Ships.Count > 0 ? Ships[0] : null;
 

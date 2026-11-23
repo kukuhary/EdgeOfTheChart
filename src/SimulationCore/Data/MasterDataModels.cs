@@ -47,6 +47,9 @@ public sealed class PortData
     [JsonPropertyName("world_tile")]
     public GridPointData WorldTile { get; set; } = new();
 
+    [JsonPropertyName("phase1_tile")]
+    public GridPointData? Phase1Tile { get; set; }
+
     [JsonPropertyName("owner_faction")]
     public string OwnerFaction { get; set; } = string.Empty;
 

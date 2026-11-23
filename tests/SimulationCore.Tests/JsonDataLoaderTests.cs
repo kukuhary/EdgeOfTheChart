@@ -28,8 +28,11 @@ public sealed class JsonDataLoaderTests
         string dataDir = LocateDataDirectory();
         MasterDataCatalog catalog = JsonDataLoader.LoadFromDirectory(dataDir);
 
-        Assert.Equal(8, catalog.Ports.Count);
+        Assert.Equal(19, catalog.Ports.Count);
+        Assert.Equal(15, catalog.Ports.Count(p => p.Phase1Tile is not null));
         Assert.NotNull(catalog.FindPort("port_lisbon"));
+        Assert.NotNull(catalog.FindPort("port_madeira"));
+        Assert.NotNull(catalog.FindPort("port_venice"));
         Assert.NotNull(catalog.FindPort("port_busanpo"));
 
         Assert.Equal(6, catalog.Ships.Count);

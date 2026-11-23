@@ -4,24 +4,46 @@ using EdgeOfTheChart.SimulationCore.Factions;
 using EdgeOfTheChart.SimulationCore.Narrative;
 using EdgeOfTheChart.SimulationCore.Officers;
 using EdgeOfTheChart.SimulationCore.Routing;
+using EdgeOfTheChart.SimulationCore.Sailing;
 
 namespace EdgeOfTheChart.SimulationCore.World;
 
 public sealed class WorldState
 {
     public const int CurrentSaveVersion = 1;
+    private const int MaxVoyageLogEntries = 20;
 
     public string ProtagonistId { get; set; } = "hero_diego";
     public GameSceneId CurrentScene { get; set; } = GameSceneId.Title;
     public string? CurrentPortId { get; set; }
+    public double ShipX { get; set; } = 24.5;
+    public double ShipY { get; set; } = 31.5;
+    public double HeadingDegrees { get; set; } = 270.0;
     public SimulationClock Clock { get; set; } = new();
     public Fleet.Fleet PlayerFleet { get; set; } = new();
     public List<Officer> Officers { get; set; } = new();
     public List<PortState> Ports { get; set; } = new();
     public List<FactionState> Factions { get; set; } = new();
     public StoryFlagStore Flags { get; set; } = new();
+    public List<int> ExploredTileIndices { get; set; } = new();
+    public List<string> VoyageLog { get; set; } = new();
+    public List<StormCell> StormCells { get; set; } = new();
     public int Gold { get; set; }
     public int Debt { get; set; }
+
+    public void AddVoyageLog(string message)
+    {
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            return;
+        }
+
+        VoyageLog.Add($"[{Clock.Month:00}/{Clock.Day:00}] {message}");
+        if (VoyageLog.Count > MaxVoyageLogEntries)
+        {
+            VoyageLog.RemoveRange(0, VoyageLog.Count - MaxVoyageLogEntries);
+        }
+    }
 
     public static WorldState CreateNewGameSample(MasterDataCatalog catalog, string protagonistId = "hero_diego")
     {
@@ -44,16 +66,25 @@ public sealed class WorldState
         OfficerData officerData = catalog.FindOfficer(starterOfficerId)
             ?? throw new InvalidDataException($"초기 동료 데이터를 찾을 수 없습니다: {starterOfficerId}");
 
+        List<PortState> ports = catalog.Ports.Select(PortState.FromData).ToList();
+        PortState? starterPort = ports.FirstOrDefault(p => string.Equals(p.Id, starterPortId, StringComparison.Ordinal));
+        double startX = starterPort?.Phase1X is int px ? px + 0.5 : 24.5;
+        double startY = starterPort?.Phase1Y is int py ? py + 0.5 : 31.5;
+
         var state = new WorldState
         {
             ProtagonistId = protagonistId,
-            CurrentScene = GameSceneId.Port,
+            CurrentScene = GameSceneId.WorldMap,
             CurrentPortId = starterPortId,
+            ShipX = startX,
+            ShipY = startY,
+            HeadingDegrees = 180.0,
             Clock = new SimulationClock { Year = 1522, Month = 5, Day = 1, Hour = 8, SpeedMultiplier = 1 },
             Gold = gold,
             Debt = debt,
-            Ports = catalog.Ports.Select(PortState.FromData).ToList(),
-            Factions = CreateDefaultFactions()
+            Ports = ports,
+            Factions = CreateDefaultFactions(),
+            StormCells = WindAndCurrentField.CreateDefaultStormCells()
         };
 
         var flagship = Fleet.Ship.FromTemplate(shipTemplate, "ship_flagship_01", starterShipName);
@@ -64,10 +95,14 @@ public sealed class WorldState
         state.PlayerFleet.RepairWood = 30;
         state.PlayerFleet.AmmoNormal = 60;
         state.PlayerFleet.AmmoSilver = 10;
+        state.PlayerFleet.LimeJuice = 5;
 
         Officer starterOfficer = Officer.FromData(officerData);
         starterOfficer.AssignedShipId = flagship.Id;
         state.Officers.Add(starterOfficer);
+
+        string portName = starterPort?.NameKo ?? "리스본";
+        state.AddVoyageLog($"{portName} 외항에서 {flagship.Name} 출항 준비 완료.");
 
         return state;
     }
