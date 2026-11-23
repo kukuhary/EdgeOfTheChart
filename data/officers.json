@@ -1,0 +1,88 @@
+{
+  "officers": [
+    {
+      "id": "off_goncalo_alves",
+      "name_ko": "곤살루 알베스",
+      "nationality": "faction_portugal",
+      "nav_level": 6,
+      "combat_level": 4,
+      "stats": { "helm": 78, "survey": 65, "negotiate": 52, "gunnery": 48, "leadership": 74 },
+      "personalities": ["loyal", "cautious"],
+      "initial_loyalty": 90,
+      "recruit_cost": 0,
+      "recommended_role": "first_mate",
+      "personal_quest_id": "quest_goncalo_cape_grave",
+      "portrait_id": "portrait_off_goncalo"
+    },
+    {
+      "id": "off_mateo_ruiz",
+      "name_ko": "마테오 루이스",
+      "nationality": "faction_spain",
+      "nav_level": 3,
+      "combat_level": 7,
+      "stats": { "helm": 52, "survey": 35, "negotiate": 34, "gunnery": 84, "leadership": 76 },
+      "personalities": ["aggressive", "cynical"],
+      "initial_loyalty": 82,
+      "recruit_cost": 0,
+      "recommended_role": "master_gunner",
+      "personal_quest_id": "quest_mateo_vengeance_line",
+      "portrait_id": "portrait_off_mateo"
+    },
+    {
+      "id": "off_ingrid_lind",
+      "name_ko": "잉그리드 린드",
+      "nationality": "faction_netherlands",
+      "nav_level": 6,
+      "combat_level": 3,
+      "stats": { "helm": 66, "survey": 88, "negotiate": 58, "gunnery": 40, "leadership": 62 },
+      "personalities": ["scholarly", "bold"],
+      "initial_loyalty": 86,
+      "recruit_cost": 0,
+      "recommended_role": "navigator",
+      "personal_quest_id": "quest_ingrid_white_whale",
+      "portrait_id": "portrait_off_ingrid"
+    },
+    {
+      "id": "off_pietro_bellini",
+      "name_ko": "피에트로 벨리니",
+      "nationality": "faction_venice",
+      "nav_level": 5,
+      "combat_level": 2,
+      "stats": { "helm": 54, "survey": 50, "negotiate": 90, "gunnery": 32, "leadership": 56 },
+      "personalities": ["greedy", "clever"],
+      "initial_loyalty": 72,
+      "recruit_cost": 0,
+      "recommended_role": "purser",
+      "personal_quest_id": "quest_pietro_ledger_temptation",
+      "portrait_id": "portrait_off_pietro"
+    },
+    {
+      "id": "off_william_drake",
+      "name_ko": "윌리엄 드레이크",
+      "nationality": "faction_england",
+      "nav_level": 4,
+      "combat_level": 7,
+      "stats": { "helm": 60, "survey": 42, "negotiate": 55, "gunnery": 74, "leadership": 88 },
+      "personalities": ["steadfast", "aggressive"],
+      "initial_loyalty": 88,
+      "recruit_cost": 0,
+      "recommended_role": "escort_captain",
+      "personal_quest_id": "quest_drake_fort_defense",
+      "portrait_id": "portrait_off_william"
+    },
+    {
+      "id": "off_choi_mugang",
+      "name_ko": "최무강",
+      "nationality": "faction_joseon",
+      "nav_level": 4,
+      "combat_level": 7,
+      "stats": { "helm": 55, "survey": 40, "negotiate": 38, "gunnery": 86, "leadership": 72 },
+      "personalities": ["righteous", "craftsman"],
+      "initial_loyalty": 88,
+      "recruit_cost": 0,
+      "recommended_role": "master_gunner",
+      "personal_quest_id": "quest_choi_twin_dragon_cannon",
+      "portrait_id": "portrait_off_choi_mugang"
+    }
+  ]
+}

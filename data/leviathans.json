@@ -1,0 +1,18 @@
+{
+  "leviathans": [
+    {
+      "id": "levi_atlantic_kraken",
+      "name_ko": "대서양 크라켄",
+      "grid_footprint": { "width": 3, "height": 3 },
+      "weak_ammo": ["ammo_harpoon", "ammo_powder_keg"],
+      "parts": [
+        { "id": "part_tentacle_front", "name_ko": "전방 촉수군", "hp": 220, "armor": 6, "is_core": false, "on_destroy": "disable_grapple_pattern" },
+        { "id": "part_tentacle_flank", "name_ko": "측면 촉수군", "hp": 200, "armor": 6, "is_core": false, "on_destroy": "reduce_evasion" },
+        { "id": "part_head", "name_ko": "거대 두부", "hp": 500, "armor": 12, "is_core": true, "on_destroy": "leviathan_defeated" }
+      ],
+      "telegraph_patterns": [
+        { "id": "pat_maelstrom_slam", "name_ko": "심해 촉수 강타", "telegraph_turns": 1, "damage": 95, "aoe_shape": "cross_3x3" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": "relic_aztec_sun_disc",
+      "slot_type": "relic",
+      "category": "cursed",
+      "name_ko": "저주받은 아즈텍 태양판",
+      "modifiers": [
+        { "stat": "cannon_damage_mult", "op": "add", "value": 0.30 },
+        { "stat": "capture_gold_mult", "op": "add", "value": 0.40 },
+        { "stat": "storm_chance_mult", "op": "mul", "value": 2.0 },
+        { "stat": "weekly_curse_gain", "op": "add", "value": 12.0 }
+      ]
+    },
+    {
+      "id": "relic_broken_astrolabe",
+      "slot_type": "relic",
+      "category": "ancient",
+      "name_ko": "깨진 황금 아스트롤라베",
+      "modifiers": [
+        { "stat": "fog_reveal_radius_bonus", "op": "add", "value": 2.0 },
+        { "stat": "lost_island_resonance", "op": "add", "value": 1.0 }
+      ]
+    },
+    {
+      "id": "relic_st_nicholas_reliquary",
+      "slot_type": "relic",
+      "category": "holy",
+      "name_ko": "성 니콜라스의 유골함",
+      "modifiers": [
+        { "stat": "ghost_ship_resistance_pierce", "op": "add", "value": 1.0 },
+        { "stat": "scurvy_chance_mult", "op": "mul", "value": 0.65 }
+      ]
+    },
+    {
+      "id": "fig_wooden_haeryong",
+      "slot_type": "figurehead",
+      "category": "eastern_legend",
+      "name_ko": "해룡의 목각 두상",
+      "modifiers": [
+        { "stat": "headwind_penalty_reduction", "op": "add", "value": 0.25 },
+        { "stat": "fire_arrow_damage_mult", "op": "add", "value": 0.15 }
+      ]
+    }
+  ]
+}

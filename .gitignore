@@ -1,0 +1,36 @@
+# Godot 4+ specific ignores
+.godot/
+*.translation
+export_presets.cfg
+
+# Godot C# / Mono
+.mono/
+data_*/
+mono_crash.*.json
+
+# .NET / Visual Studio / Rider
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.sln.docstates
+TestResults/
+*.trx
+*.coverage
+
+# Local saves and logs
+save_*.json
+autosave_*.json
+*.log
+*.tmp
+
+# Python / mapgen cache
+__pycache__/
+*.pyc
+.venv/
+
+# OS files
+Thumbs.db
+.DS_Store

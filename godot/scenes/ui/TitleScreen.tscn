@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Theme" path="res://resources/retro_theme.tres" id="1_theme"]
+[ext_resource type="Script" path="res://scripts/TitleScreen.cs" id="2_script"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0431373, 0.0745098, 0.129412, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(780, 420)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="GameTitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.835294, 0.568627, 1)
+theme_override_font_sizes/font_size = 28
+text = "해도의 끝 (Edge of the Chart)"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.713726, 0.788235, 0.878431, 1)
+text = "Phase 0 부트스트랩 · 960×540 레트로 정수 스케일 · 최대 3척 정예 함대"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SummaryLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "데이터 로딩 중..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SceneButtonsGrid" type="GridContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="BtnWorldMap" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/SceneButtonsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "대양 항해 씬 테스트"
+
+[node name="BtnPort" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/SceneButtonsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "항구 도보 씬 테스트"
+
+[node name="BtnNavalBattle" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/SceneButtonsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "함대 전술전 테스트"
+
+[node name="BtnLeviathan" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/SceneButtonsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "거대 괴수전 테스트"
+
+[node name="BtnPortSiege" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/SceneButtonsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "항구 공성전 테스트"
+
+[node name="BtnSaveTest" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/SceneButtonsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "세이브/로드 검증"
+
+[node name="StatusLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.564706, 0.878431, 0.690196, 1)
+text = "준비 완료: 씬 전환 또는 세이브/로드 테스트를 실행할 수 있습니다."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BtnQuit" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "종료"

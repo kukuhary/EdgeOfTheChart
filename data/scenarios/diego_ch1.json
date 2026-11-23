@@ -1,0 +1,56 @@
+{
+  "scenario_id": "diego_ch1",
+  "protagonist_id": "hero_diego",
+  "events": [
+    {
+      "id": "evt_diego_intro_lisbon",
+      "type": "story_intro",
+      "conditions": {
+        "min_year": 1522,
+        "max_year": 1522,
+        "region": "port_lisbon",
+        "required_flag_false": "done_evt_diego_intro_lisbon"
+      },
+      "cast": ["hero_diego", "off_goncalo_alves"],
+      "choices": [
+        {
+          "label": "깨진 황금 아스트롤라베를 품고 리스본 부두로 나선다",
+          "effects": [
+            { "set_flag": "done_evt_diego_intro_lisbon" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evt_cameo_gibraltar_1522",
+      "type": "cameo_crossroad",
+      "conditions": {
+        "min_year": 1522,
+        "max_year": 1524,
+        "region": "strait_of_gibraltar",
+        "required_flag_false": "done_evt_cameo_gibraltar_1522"
+      },
+      "cast": ["hero_diego", "hero_isabel", "off_goncalo_alves"],
+      "choices": [
+        {
+          "label": "붉은 돛의 카라벨 도주를 엄호한다",
+          "effects": [
+            { "set_flag": "done_evt_cameo_gibraltar_1522" },
+            { "set_flag": "isabel_helped_gibraltar" },
+            { "relation": { "target": "faction_spain", "delta": -15 } },
+            { "cameo_affinity": { "target": "hero_isabel", "delta": 30 } }
+          ]
+        },
+        {
+          "label": "스페인 순찰 함대에 항로를 알린다",
+          "effects": [
+            { "set_flag": "done_evt_cameo_gibraltar_1522" },
+            { "set_flag": "isabel_betrayed_gibraltar" },
+            { "relation": { "target": "faction_spain", "delta": 20 } },
+            { "cameo_affinity": { "target": "hero_isabel", "delta": -50 } }
+          ]
+        }
+      ]
+    }
+  ]
+}
